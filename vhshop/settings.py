@@ -82,4 +82,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = 'C:\Users\Sean\Desktop\McHacks\vhshop\templates\images'
+MEDIA_ROOT = '/templates/images'

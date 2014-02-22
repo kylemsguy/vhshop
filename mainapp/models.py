@@ -14,13 +14,13 @@ class DimsGlasses(models.Model):
     # Sides
     left_side_x = models.IntegerField()
     left_side_y = models.IntegerField()
-    left_side = (self.left_side_x, self.left_side_y)
+    left_side = (left_side_x, left_side_y)
     
     right_side_x = models.IntegerField()
     right_side_y = models.IntegerField()
-    right_side = (self.right_side_x, self.right_side_y)
+    right_side = (right_side_x, right_side_y)
     
-    sides = [self.left_side, self.right_side]
+    sides = [left_side, right_side]
 
     def widthsides(self):
         return sqrt(\
@@ -30,13 +30,13 @@ class DimsGlasses(models.Model):
     # Bridges
     left_bridge_x = models.IntegerField()
     left_bridge_y = models.IntegerField()
-    left_bridge = (self.left_bridge_x, self.left_bridge_y)
+    left_bridge = (left_bridge_x, left_bridge_y)
     
     right_bridge_x = models.IntegerField()
     right_bridge_y = models.IntegerField()
-    right_bridge = (self.right_bridge_x, self.right_bridge_y)
+    right_bridge = (right_bridge_x, right_bridge_y)
     
-    bridge = [self.left_bridge, self.right_bridge]
+    bridge = [left_bridge, right_bridge]
 
     def widthbridges(self):
         return sqrt(\
