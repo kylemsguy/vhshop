@@ -84,3 +84,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = '/templates/images'
+
+STATIC_ROOT = '/opt/vhshop-server/static'
+
