@@ -20,11 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'oc_q2f&t$$%rcr3vktj+66ybnwulnvfceau9zq#$m9&6a=mtb^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False 
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.kylemsguy.com', # Allow domain and subdomains
+    '.kylemsguy.com.' # Also allow FQDN and subdomains
+]
 
 
 # Application definition
