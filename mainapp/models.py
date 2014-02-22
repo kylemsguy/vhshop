@@ -22,24 +22,29 @@ class DimsGlasses(models.Model):
     
     sides = [self.left_side, self.right_side]
 
-    def width(self):
+    def widthsides(self):
         return sqrt(\
                 ((abs(self.right_side_x - self.left_side_x))**2) + \
                 ((abs(self.right_side_y - self.left_side_y))**2))
 
-    # Eyes
-    left_eye_x = models.IntegerField()
-    left_eye_y = models.IntegerField()
-    left_eye = (self.left_eye_x, self.left_eye_y)
+    # Bridges
+    left_bridge_x = models.IntegerField()
+    left_bridge_y = models.IntegerField()
+    left_bridge = (self.left_bridge_x, self.left_bridge_y)
     
-    right_eye_x = models.IntegerField()
-    right_eye_y = models.IntegerField()
-    right_eye = (self.right_eye_x, self.right_eye_y)
+    right_bridge_x = models.IntegerField()
+    right_bridge_y = models.IntegerField()
+    right_bridge = (self.right_bridge_x, self.right_bridge_y)
     
-    eyes = [self.left_eye, self.right_eye]
+    bridge = [self.left_bridge, self.right_bridge]
+
+    def widthbridges(self):
+        return sqrt(\
+                ((abs(self.right_bridge_x - self.left_bridge_x))**2) + \
+                ((abs(self.right_bridge_y - self.left_bridge_y))**2))
 
     def __str__(self):
-        return [self.sides, self.eyes]
+        return [self.sides, self.bridge]
 
 class Glasses(models.Model):
     company = models.ForeignKey(Company)
