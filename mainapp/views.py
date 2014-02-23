@@ -25,16 +25,31 @@ def upload_face(request):
 			# file is saved
 			form.save()
 
-			return render_to_response(calibrate.html, {'form': form}, context)
+			return render_to_response("calibrate.html", {'form': form}, context)
 	else:
 		form = FaceForm()
 	return render(request, 'mainapp/index.html')
 
 def calibrate_face(request):
+	context = RequestContext(request)
 	if request.method == 'POST':
 		form = RawFaceDataForm(request.POST)
 		if form.is_valid():
-			pass
+			data = form.values()
+			new_data = {}
+			for item in data:
+				split = item.split(',')
+				new_data[int(split[0])] = int(split[1])
+			new_data = sorted(new_data, key=new_data.get)
+			new_form = FaceDataForm(new_data)
+			if new_form.is_valid():
+				new_form.save()
+			return render_to_response("tryon.html", {})
+	else:
+		return render(request, 'mainapp/calibrate.html')
+
+def tryon():
+	pass
 
 def get_face(request):
 	""" May not be useful"""
