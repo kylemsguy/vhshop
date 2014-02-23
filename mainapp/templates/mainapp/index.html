@@ -1,7 +1,6 @@
 {% extends "mainapp/base.html" %}
 {% block content %}
 Please select your file:
-<!-- try using {% url 'mainapp:upload_face' %} -->
 <form action="calibrate" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <p>{{ form.non_field_errors }}</p>

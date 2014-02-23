@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from mainapp.models import Company, DimsGlasses, Glasses, Face
-from mainapp.forms import FaceForm
+from mainapp.forms import FaceForm, RawFaceDataForm
 
 # Create your views here.
 from django.conf.urls import *
@@ -31,7 +31,6 @@ def upload_face(request):
 	return render(request, 'mainapp/index.html')
 
 def calibrate_face(request):
-	context = RequestContext(request)
 	if request.method == 'POST':
 		form = RawFaceDataForm(request.POST)
 		if form.is_valid():
@@ -44,9 +43,13 @@ def calibrate_face(request):
 			new_form = FaceDataForm(new_data)
 			if new_form.is_valid():
 				new_form.save()
-			return render_to_response("tryon.html", {})
+			return HttpResponse("Success!") #debug
+			#return render_to_response("tryon.html", {})
+		else: #debug
+			return HttpResponse("Fail2") #debug
 	else:
-		return render(request, 'mainapp/calibrate.html')
+		return HttpResponse("Fail")
+		#return render(request, 'mainapp/calibrate.html')
 
 def tryon():
 	pass
