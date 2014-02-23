@@ -12,6 +12,16 @@ urlpatterns = patterns('mysite.views',
     (r'^glasses/', 'glasses'),
 )
 
+def index(request):
+	return render(request, 'index.html')
+
+def upload_face(request):
+	if request.method == 'POST':
+		form = UploadFileForm(request.POST, request.FILES)
+		if form.is_valid():
+			handle_uploaded_file(request.FILES(['file']))
+			return HttpResponseRedirect('/')
+
 def get_face(request):
     if request.method == 'POST':
         form = FaceForm(request.POST)
@@ -19,3 +29,5 @@ def get_face(request):
             my_method = form.save()
         else:
             form = FaceForm()
+
+    return HttpResponse("Yay! Success!")
