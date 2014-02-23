@@ -6,5 +6,5 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('mysite.views',
     (r'^upload_im/$', 'upload_im'),
     (r'^inp_coord/$', 'inp_coord'),
-    (r'^glasses/, 'glasses
+    (r'^glasses/$, 'glasses')
 )
