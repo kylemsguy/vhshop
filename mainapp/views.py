@@ -8,7 +8,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from .forms import FaceForm
-from vhshop.settings import STATIC_URL
+from vhshop.settings import STATIC_URL, MEDIA_ROOT
+from standalone_scripts import image_overlay
+
+import io
 
 urlpatterns = patterns('mysite.views',
     (r'^upload_im/$', 'upload_im'),
@@ -56,9 +59,33 @@ def calibrate_face(request):
 		else:
                         form = FaceDataForm(request.POST, request.FILES)
                         return HttpResponse("Form is not valid")
-
+def parseinttuple(instr):
+	a = instr.split(",")
+	return int(a[0]), int(a[1])
 def tryon(request):
-	pass
+	face = Face.objects.get(pk=request.GET['id'])
+	if 'set1' in request.GET:
+		(face.left_side_x, face.left_side_y) = \
+			parseinttuple(request.GET['set1'])
+		(face.right_side_x, face.right_side_y) = \
+			parseinttuple(request.GET['set2'])
+		face.left_corner_x, face_left_corner_y = \
+			parseinttuple(request.GET['set3'])
+		face.right_corner_x, face.right_corner_y = \
+			parseinttuple(request.GET['set4'])
+		face.save()
+	glasses = Glasses.objects.all()[0]
+	print(face.image, glasses.picture)
+	facefile = MEDIA_ROOT + face.image.url
+	glassesfile = MEDIA_ROOT + glasses.picture.url
+	print(facefile, glassesfile)
+	myoverlay = image_overlay.overlay(facefile, glassesfile, 225, [
+		(face.left_side_x, face.left_side_y),
+		(face.right_side_x, face.right_side_y)], 0, 0)
+	tempname = MEDIA_ROOT + "temp.jpg"
+	myoverlay.save(tempname)
+	return HttpResponse("<img src=\"" + STATIC_URL + "temp.jpg" + "\">")
+	
 
 def get_face(request):
 	""" May not be useful"""
