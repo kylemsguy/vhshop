@@ -86,10 +86,10 @@ def tryon(request):
 	tempname = MEDIA_ROOT + "temp.jpg"
 	myoverlay.save(tempname)
 
-	thedict = {'image':STATIC_URL + "temp.jpg"}
-	company_list = Company.objects.all()
-	dims_list = DimsGlasses.objects.all()
-	glasses_list = Glasses.objects.all()
+	company_list = Company.objects.all().order_by('CompName')
+	glasses_list = Glasses.objects.all().order_by('likes')
+	thedict = {'image':STATIC_URL + "temp.jpg", 'company_list': company_list, \
+		'glasses_list': glasses_list}
 
 	return render_to_response("mainapp/tryon.html", thedict)
 

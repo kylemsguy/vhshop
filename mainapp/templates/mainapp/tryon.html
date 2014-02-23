@@ -2,10 +2,13 @@
 {% block content %}
 <ul>
 {% for company in company_list %}
-<li>Company: {{company.CompName}}&nbsp;{{company.website}}</li>
+	<li>Company: {{company.CompName}} </li>
+	<li>Website: {{company.website}} </li>
 {% endfor %}
 {% for glasses in glasses_list %}
-<li>Glasses: {{glasses.id}}&nbsp;{{glasses.dimensions}}</li>
+	<li>Glasses: {{glasses.id}} </li>
+	<li>Dimensions: {{glasses.dimensions}}</li>
 {% endfor %}
+</ul>
 <img src="{{ image }}" />
 {% endblock %}
