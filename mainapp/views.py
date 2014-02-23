@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from mainapp.models import Company, DimsGlasses, Glasses, Face
-from mainapp.forms import FaceForm, RawFaceDataForm
+from mainapp.forms import FaceForm, FaceDataForm
 
 # Create your views here.
 from django.conf.urls import *
@@ -15,7 +15,22 @@ urlpatterns = patterns('mysite.views',
 )
 
 def index(request):
-	return render(request, 'mainapp/index.html')
+	ctx = {}
+	if request.method == 'GET':
+		form1 = FaceForm(request.GET)
+		ctx['form1'] = form1
+		return render(request, 'mainapp/index.html', ctx)
+
+	if request.method == 'POST':
+		form = FaceDataForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return render(request, 'mainapp/calibrate.html')
+
+		else:
+			form = FaceDataForm()
+			ctx['form'] = form
+			return render(request, 'mainapp/index.html', ctx)
 
 def upload_face(request):
 	context = RequestContext(request)
@@ -32,24 +47,10 @@ def upload_face(request):
 
 def calibrate_face(request):
 	if request.method == 'POST':
-		form = RawFaceDataForm(request.POST)
+		form = FaceDataForm(request.POST, request.FILES)
 		if form.is_valid():
-			data = form.values()
-			new_data = {}
-			for item in data:
-				split = item.split(',')
-				new_data[int(split[0])] = int(split[1])
-			new_data = sorted(new_data, key=new_data.get)
-			new_form = FaceDataForm(new_data)
-			if new_form.is_valid():
-				new_form.save()
-			return HttpResponse("Success!") #debug
-			#return render_to_response("tryon.html", {})
-		else: #debug
-			return HttpResponse("Fail2") #debug
-	else:
-		return HttpResponse("Fail")
-		#return render(request, 'mainapp/calibrate.html')
+			form.save()
+			return HttpresponseRedirect('/')
 
 def tryon():
 	pass

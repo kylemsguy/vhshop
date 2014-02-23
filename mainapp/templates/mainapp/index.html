@@ -1,15 +1,19 @@
 {% extends "mainapp/base.html" %}
 {% block content %}
 Please select your file:
+<form action="." method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+    {% if form %}
+    {{ form }}
+    <input type="submit" name="submit" />
+    {% endif %}
+</form>
 <form action="calibrate" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <p>{{ form.non_field_errors }}</p>
-    <p>{{ form.image.label_tag }} {{ form.docfile.help_text }}</p>
-    <p>
-        {{ form.image.errors }}
-        {{ form.image }}
-    </p>
-    <input type="file" name="myfile" />
-    <input type="submit" value="Upload" />
+	{% if form1 %}
+	{% csrf_token %}
+    {{ form1 }}
+    {{ image }}
+    <input type="submit" name="submit" />
+    {% endif %}
 </form>
 {% endblock %}

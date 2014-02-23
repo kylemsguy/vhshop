@@ -6,7 +6,8 @@
 { % block content % }
 
 {% if face %}
-    <form id="myform" action="try">
+    <form id="myform" action="try" enctype="multipart/form-data">
+    	{% csrf_token %}
 		<input type="text" name="set1" id="set1" />
 		<button onmousedown="undo(event)" id="b1" type="button">Clear</button>
 		<input type="text" name="set2" id="set2" />
@@ -17,7 +18,11 @@
 		<button onmousedown="undo(event)" id="b4" type="button">Clear</button>
 	</form>
 
-	<img id ="clicker" onmousedown="show_coords(event)" src="{{ form[0] }}" />
+	<img id ="clicker" onmousedown="show_coords(event)" src="{{ image }}" />
+
+	<form id="myform" action="try">
+		<input type="submit" name="submit" />
+	</form>
 	
 
 {% endif %}
