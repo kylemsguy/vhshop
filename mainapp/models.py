@@ -13,6 +13,7 @@ class Company(models.Model):
         return self.CompName
 
 class DimsGlasses(models.Model):
+    GlassesName = models.CharField(max_length=200)
     # Sides
     left_side_x = models.IntegerField()
     left_side_y = models.IntegerField()
@@ -46,12 +47,11 @@ class DimsGlasses(models.Model):
                 ((abs(self.right_bridge_y - self.left_bridge_y))**2))
 
     def __str__(self):
-        return [self.sides, self.bridge]
+        return self.GlassesName
 
 class Glasses(models.Model):
     company = models.ForeignKey(Company)
     dimensions = models.ForeignKey(DimsGlasses)
-    GlassesName = models.CharField(max_length=200)
     likes = models.IntegerField(default=0)
     numtries = models.IntegerField(default=0)
     picture = models.ImageField(upload_to='glasses')
@@ -60,7 +60,7 @@ class Glasses(models.Model):
         return self.numtries/self.likes
 
     def __str__(self):
-        return self.GlassesName
+        return self.dimensions.GlassesName
     
 
 # Face Database
@@ -101,5 +101,5 @@ class Face(models.Model):
                 ((abs(self.right_corner_y - self.left_corner_y))**2))
 
     def __str__(self):
-        return [self.sides, self.corner]
+        return self.id
     
