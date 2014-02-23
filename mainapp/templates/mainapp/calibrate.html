@@ -1,120 +1,30 @@
-<html>
-	{% extends "mainapp/base.html" %}
-	{% block content %}
+{% extends "mainapp/base.html" %}
 
-	<body>
-		<div class="header">
-			<div class="container">
-				<nav class="navbar" role="navigation">
-					<div class="navbar-header">
-						<button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a href="#" class="navbar-brand scroll-top">
-							<img id="logo" src="http://i.imgur.com/6Dz9pne.png" height=50px>
-							</a>
-					</div>
-            <!--/.navbar-header-->
-					<div id="main-nav" class="collapse navbar-collapse">
-						<ul class="nav navbar-nav">
-							<li><a href="#" class="scroll-link" data-id="How">How</a></li>
-							<li><a href="#" class="scroll-link" data-id="Companies">Companies</a></li>
-							<li><a href="#" class="scroll-link" data-id="Upload">Upload</a></li>
-							<li><a href="#" class="scroll-link" data-id="Contact">Contact</a></li>
-						</ul>
-					</div>
-				</nav>
-			</div>
-		</div>
-		
-		<div id="How" class="page-section">
-			<div class="container">
-				<h2>How it works</h2>
-					<h3> Step 1 </h3>
-						<p class="caption"> Upload image and click at the following locations</p>
-						<img id="face" src="http://picasion.com/i/21AB1">
-					<h3> Step 2 </h3>
-						<p class="caption"> Try on glasses </p>
-					<h3> Step 3 </h3>
-						<p class="caption"> Order or save to wish list </p>
-					<a href="#" class="scroll-link" data-id="Companies">
-					<button class="btn"> Next </button>
-					</a>
-			</div>
-		</div>
-		
-		<div id="Companies" class="page-section">
-			<div class="container">
-			<h2>Companies</h2>
-			<p class="caption"> If you make or sell glasses, eglasses is the best way for you
-			to give customers a fun and easy way to try on your products. Signing on with us is easy,
-			simply register your company account and upload images of a few of your glasses.
-			We'll take care of the rest. </p>
-			<div class="container">
-        <div class="row">
-            <div class="col-xs-3">
-                <a href="#" class="thumbnail">
-                    <img src="../images/125x125.jpg" alt="125x125">
-                </a>
-            </div>
-            <div class="col-xs-3">
-                <a href="#" class="thumbnail">
-                    <img src="../images/125x125.jpg" alt="125x125">
-                </a>
-            </div>
-            <div class="col-xs-3">
-                <a href="#" class="thumbnail">
-                    <img src="../images/125x125.jpg" alt="125x125">
-                </a>
-            </div>
-            <div class="col-xs-3">
-                <a href="#" class="thumbnail">
-                    <img src="../images/125x125.jpg" alt="125x125">
-                </a>
-            </div>
-        </div>
-    </div>
-			</div>
-		</div>
+{% block header %}
+<script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/vhshop.js"></script>
+{% endblock %}
+{% block content %}
 
-		<div id="Upload" class="page-section">
-			<div class="container">
-			<h2>Upload</h2>
-			<p class="caption"> </p>
-			{% if face %}
-			<form id="myform" action="try" enctype="multipart/form-data">
-			{% csrf_token %}
-			<div class="input-group">
-				<input type="text" name="set1" id="set1" class="form-control">
-				<button onmousedown="undo(event)" id="b1" class="btn">Clear</button>
-			</div>
-			<div class="input-group">
-				<input type="text" name="set2" id="set2" class="form-control">
-				<button onmousedown="undo(event)" id="b2" class="btn">Clear</button>
-			</div>
-
-			<div class="input-group">
-				<input type="text" name="set3" id="set3" class="form-control">
-				<button onmousedown="undo(event)" id="b3" class="btn">Clear</button>
-			</div>
-			<div class="input-group">
-				<input type="text" name="set4" id="set4" class="form-control">
-				<button onmousedown="undo(event)" id="b4" class="btn">Clear</button>
-			</div>
-			<img id ="clicker" onmousedown="show_coords(event)" src="face.png">
-			</div>
-			<button type="submit" name="button" class="btn">Upload</button>
-			</form>
-			{% endif %}
-			{% endblock %}
-		</div>
-		
+{% if face %}
+    <form id="myform" action="try" enctype="multipart/form-data">
+    	{% csrf_token %}
+    	<input type="hidden" name="id" value="{{face.pk}}">
+		<input type="text" name="set1" id="set1" />
+		<button onmousedown="undo(event)" id="b1" type="button">Clear</button>
+		<input type="text" name="set2" id="set2" />
+		<button onmousedown="undo(event)" id="b2" type="button">Clear</button>
+		<input type="text" name="set3" id="set3" />
+		<button onmousedown="undo(event)" id="b3" type="button">Clear</button>
+		<input type="text" name="set4" id="set4" />
+		<button onmousedown="undo(event)" id="b4" type="button">Clear</button>
+		<br>
+		<img id ="clicker" onmousedown="show_coords(event)" src="{{ image }}" />
+		<br>
+		<input type="submit" name="submit" />
+	</form>
 	
-		
-		<div id="Contact" class="page-section">
-			<h2>Contact us</h2>
-			<p class="caption"> asdasdas</p>
-		</div>
+
+{% endif %}
+
+{% endblock %}
