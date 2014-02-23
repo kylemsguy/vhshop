@@ -66,7 +66,7 @@ class Glasses(models.Model):
 # Face Database
 
 class Face(models.Model):
-    image = models.ImageField(upload_to='faces')
+    image = models.ImageField(upload_to='/static/media/faces')
 
     # Sides
     left_side_x = models.IntegerField()

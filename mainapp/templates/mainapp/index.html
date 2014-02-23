@@ -1,8 +1,17 @@
 { % extends "mainapp/base.html" % }
 
 { % block header % }
-<script type="text/javascript" src="/static/vshop.js"></script>
 { % endblock % }
 { % block content % }
-
-
+Please select your file:
+<form action="{% url list %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>{{ form.non_field_errors }}</p>
+    <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+    <p>
+        {{ form.docfile.errors }}
+        {{ form.docfile }}
+    </p>
+    <p><input type="submit" value="Upload" /></p>
+</form>
+{ % endblock % }
