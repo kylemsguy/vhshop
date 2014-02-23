@@ -1,3 +1,5 @@
+var count = 1;
+
 function show_coords(event)
   {
   var elem = document.getElementById("clicker");
