@@ -1,3 +1,11 @@
 {% extends "mainapp/base.html" %}
 {% block content %}
+<ul>
+{% for company in company_list %}
+<li>Company: {{company.CompName}}&nbsp;{{company.website}}</li>
+{% endfor %}
+{% for glasses in glasses_list %}
+<li>Glasses: {{glasses.id}}&nbsp;{{glasses.dimensions}}</li>
+{% endfor %}
+<img src="{{ image }}" />
 {% endblock %}

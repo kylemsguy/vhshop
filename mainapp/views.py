@@ -1,15 +1,16 @@
-from django.shortcuts import render
 from mainapp.models import Company, DimsGlasses, Glasses, Face
 from mainapp.forms import FaceForm, FaceDataForm
 
 # Create your views here.
 from django.conf.urls import *
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
 from .forms import FaceForm
 from vhshop.settings import STATIC_URL, MEDIA_ROOT
 from standalone_scripts import image_overlay
+
+from mainapp.models import Company, DimsGlasses, Glasses, Face
 
 import io
 
@@ -81,11 +82,16 @@ def tryon(request):
 	print(facefile, glassesfile)
 	myoverlay = image_overlay.overlay(facefile, glassesfile, 225, [
 		(face.left_side_x, face.left_side_y),
-		(face.right_side_x, face.right_side_y)], 0, 0)
+		(face.right_side_x, face.right_side_y)], 50, 100)
 	tempname = MEDIA_ROOT + "temp.jpg"
 	myoverlay.save(tempname)
-	return HttpResponse("<img src=\"" + STATIC_URL + "temp.jpg" + "\">")
-	
+
+	thedict = {'image':STATIC_URL + "temp.jpg"}
+	company_list = Company.objects.all()
+	dims_list = DimsGlasses.objects.all()
+	glasses_list = Glasses.objects.all()
+
+	return render_to_response("mainapp/tryon.html", thedict)
 
 def get_face(request):
 	""" May not be useful"""
