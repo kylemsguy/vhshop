@@ -12,6 +12,10 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^vhshop/', include(urls, namespace="mainapp"))
-
+<<<<<<< HEAD
+    url(r'^vhshop/', include(urls))
+)
+=======
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+>>>>>>> 8fb3866fd20fad215ce6444a3c96cd7225e164da

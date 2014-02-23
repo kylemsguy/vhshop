@@ -1,10 +1,8 @@
-{ % extends "mainapp/base.html" % }
-
-{ % block header % }
-{ % endblock % }
-{ % block content % }
+{% extends "mainapp/base.html" %}
+{% block content %}
 Please select your file:
-<form action="{% url list %}" method="post" enctype="multipart/form-data">
+<!-- try using {% url 'mainapp:upload_face' %} -->
+<form action="calibrate" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <p>{{ form.non_field_errors }}</p>
     <p>{{ form.image.label_tag }} {{ form.docfile.help_text }}</p>
@@ -12,6 +10,7 @@ Please select your file:
         {{ form.image.errors }}
         {{ form.image }}
     </p>
-    <p><input type="submit" value="Upload" /></p>
+    <input type="file" name="myfile" />
+    <input type="submit" value="Upload" />
 </form>
-{ % endblock % }
+{% endblock %}

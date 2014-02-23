@@ -75,16 +75,16 @@ class Glasses(models.Model):
 # Face Database
 
 class Face(models.Model):
-    image = models.ImageField(upload_to='/static/media/faces')
+    image = models.ImageField(upload_to='faces')
 
     # Sides
     left_side_x = models.IntegerField()
     left_side_y = models.IntegerField()
-    left_side = (left_side_x, left_side_y)
+    left_side = left_side_x, left_side_y
     
     right_side_x = models.IntegerField()
     right_side_y = models.IntegerField()
-    right_side = (right_side_x, right_side_y)
+    right_side = right_side_x, right_side_y
     
     sides = [left_side, right_side]
 
@@ -96,11 +96,11 @@ class Face(models.Model):
     # Eye Corners
     left_corner_x = models.IntegerField()
     left_corner_y = models.IntegerField()
-    left_corner = (left_corner_x, left_corner_y)
+    left_corner = left_corner_x, left_corner_y
     
     right_corner_x = models.IntegerField()
     right_corner_y = models.IntegerField()
-    right_corner = (right_corner_x, right_corner_y)
+    right_corner = right_corner_x, right_corner_y
     
     corner = [left_corner, right_corner]
 

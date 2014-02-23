@@ -6,7 +6,20 @@
 { % block content % }
 
 {% if face %}
-<div style="text-align:center"><img src="" /></div>
+    <form id="myform">
+		<input type="text" name="set1" id="set1" />
+		<button onmousedown="undo(event)" id="b1" type="button">Clear</button>
+		<input type="text" name="set2" id="set2" />
+		<button onmousedown="undo(event)" id="b2" type="button">Clear</button>
+		<input type="text" name="set3" id="set3" />
+		<button onmousedown="undo(event)" id="b3" type="button">Clear</button>
+		<input type="text" name="set4" id="set4" />
+		<button onmousedown="undo(event)" id="b4" type="button">Clear</button>
+	</form>
+
+	<img id ="clicker" onmousedown="show_coords(event)" src="http://i39.tinypic.com/6z9apz.jpg" />
+	
+
 {% endif %}
 
 { % endblock % }
