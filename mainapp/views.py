@@ -28,8 +28,8 @@ def upload_face(request):
 
 		return render_to_response(calibrate.html, {'form': form}, context)
 	else:
-        form = FaceForm()
-    return 
+		form = FaceForm()
+	return 
     
 
 
