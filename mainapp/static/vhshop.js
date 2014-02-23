@@ -1,3 +1,5 @@
+var count = 1;
+
 function show_coords(event)
   {
   var elem = document.getElementById("clicker");
@@ -22,10 +24,12 @@ function show_coords(event)
 		var tid = "null";
 		break;
 	}
-	document.getElementById(tid).value = "X coords: " + x + ", Y coords: " + y;
+	//document.getElementById(tid).value = "X coords: " + x + ", Y coords: " + y;
+	document.getElementById(tid).value =  x + "," + y;
 	count += 1;
   //alert("X coords: " + x + ", Y coords: " + y);
-  }
+ }
+
   
  function undo(event)
  {
@@ -33,7 +37,7 @@ function show_coords(event)
 	{
 		var hid = this.id;
 		switch (hid)
-	{
+		{
 		case "b1":
 			count = 1;
 			var fid = "set1";
@@ -52,8 +56,8 @@ function show_coords(event)
 			break;
 		default:
 			break;
-	}
-	document.getElementById(fid).value = "lol";
+		}
+		document.getElementById(fid).value = "Cleared"; //"lol";
 	});
 }
 

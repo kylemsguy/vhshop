@@ -78,12 +78,12 @@ class Face(models.Model):
     image = models.ImageField(upload_to='faces')
 
     # Sides
-    left_side_x = models.IntegerField()
-    left_side_y = models.IntegerField()
+    left_side_x = models.IntegerField(null=True)
+    left_side_y = models.IntegerField(null=True)
     left_side = left_side_x, left_side_y
     
-    right_side_x = models.IntegerField()
-    right_side_y = models.IntegerField()
+    right_side_x = models.IntegerField(null=True)
+    right_side_y = models.IntegerField(null=True)
     right_side = right_side_x, right_side_y
     
     sides = [left_side, right_side]
@@ -94,12 +94,12 @@ class Face(models.Model):
                 ((abs(self.right_side_y - self.left_side_y))**2))
 
     # Eye Corners
-    left_corner_x = models.IntegerField()
-    left_corner_y = models.IntegerField()
+    left_corner_x = models.IntegerField(null=True)
+    left_corner_y = models.IntegerField(null=True)
     left_corner = left_corner_x, left_corner_y
     
-    right_corner_x = models.IntegerField()
-    right_corner_y = models.IntegerField()
+    right_corner_x = models.IntegerField(null=True)
+    right_corner_y = models.IntegerField(null=True)
     right_corner = right_corner_x, right_corner_y
     
     corner = [left_corner, right_corner]

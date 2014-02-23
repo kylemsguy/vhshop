@@ -1,13 +1,15 @@
-{ % extends "mainapp/base.html" % }
+{% extends "mainapp/base.html" %}
 
-{ % block header % }
-<script type="text/javascript" src="/static/vshop.js"></script>
-{ % endblock % }
-{ % block content % }
+{% block header %}
+<script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/vhshop.js"></script>
+{% endblock %}
+{% block content %}
 
 {% if face %}
     <form id="myform" action="try" enctype="multipart/form-data">
     	{% csrf_token %}
+    	<input type="hidden" name="id" value="{{face.pk}}">
 		<input type="text" name="set1" id="set1" />
 		<button onmousedown="undo(event)" id="b1" type="button">Clear</button>
 		<input type="text" name="set2" id="set2" />
@@ -16,15 +18,13 @@
 		<button onmousedown="undo(event)" id="b3" type="button">Clear</button>
 		<input type="text" name="set4" id="set4" />
 		<button onmousedown="undo(event)" id="b4" type="button">Clear</button>
-	</form>
-
-	<img id ="clicker" onmousedown="show_coords(event)" src="{{ image }}" />
-
-	<form id="myform" action="try">
+		<br>
+		<img id ="clicker" onmousedown="show_coords(event)" src="{{ image }}" />
+		<br>
 		<input type="submit" name="submit" />
 	</form>
 	
 
 {% endif %}
 
-{ % endblock % }
+{% endblock %}

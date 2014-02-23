@@ -28,7 +28,9 @@ function show_coords(event)
 	document.getElementById(tid).value =  x + "," + y;
 	count += 1;
   //alert("X coords: " + x + ", Y coords: " + y);
-  }
+ 	]
+ }
+
   
  function undo(event)
  {
@@ -36,7 +38,7 @@ function show_coords(event)
 	{
 		var hid = this.id;
 		switch (hid)
-	{
+		{
 		case "b1":
 			count = 1;
 			var fid = "set1";
@@ -55,8 +57,8 @@ function show_coords(event)
 			break;
 		default:
 			break;
-	}
-	document.getElementById(fid).value = "Cleared"; //"lol";
+		}
+		document.getElementById(fid).value = "Cleared"; //"lol";
 	});
 }
 

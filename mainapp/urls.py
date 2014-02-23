@@ -5,5 +5,5 @@ from mainapp import views
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^calibrate$', views.calibrate_face, name='calibrate'),
-    url(r'^try$', views.tryon, name='tryon'),
+    url(r'^try/$', views.tryon, name='tryon'),
 )
