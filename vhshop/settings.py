@@ -83,7 +83,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = BASE_DIR + '/mainapp/static/'
+MEDIA_ROOT = '/opt/vhshop-server/static/' #BASE_DIR + '/mainapp/static/'
 
-STATIC_ROOT = '/opt/vhshop-server/static'
+STATIC_ROOT = '/opt/vhshop-server/static/'
 
