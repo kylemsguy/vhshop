@@ -1,5 +1,6 @@
 from django.db import models
 from math import sqrt
+from vhshop.settings import MEDIA_ROOT, STATIC_URL
 
 # Create your models here.
 
@@ -29,7 +30,7 @@ class DimsGlasses(models.Model):
         return sqrt(\
                 ((abs(self.right_side_x - self.left_side_x))**2) + \
                 ((abs(self.right_side_y - self.left_side_y))**2))
-
+    
     # Bridges
     left_bridge_x = models.IntegerField()
     left_bridge_y = models.IntegerField()
@@ -56,7 +57,15 @@ class Glasses(models.Model):
     numtries = models.IntegerField(default=0)
     picture = models.ImageField(upload_to='glasses')
 
+    def admin_image(self):
+        print(MEDIA_ROOT)
+        return '<img src="%s%s"/>' % (STATIC_URL, self.picture.url)
+
+    admin_image.allow_tags = True
+
     def numtries_to_likes(self):
+        if self.likes == 0:
+            return 0
         return self.numtries/self.likes
 
     def __str__(self):
