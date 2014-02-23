@@ -13,3 +13,9 @@ class FaceDataForm(forms.ModelForm):
 					'right_side_x', 'right_side_y',
 					'left_corner_x', 'left_corner_y',
 					'right_corner_x', 'right_corner_y']
+
+class RawFaceDataForm(forms.Form):
+	left_side = forms.CharField(max_length=20)
+	right_side = forms.CharField(max_length=20)
+	left_corner = forms.CharField(max_length=20)
+	right_corner = forms.CharField(max_length=20)

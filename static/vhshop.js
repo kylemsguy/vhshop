@@ -24,7 +24,8 @@ function show_coords(event)
 		var tid = "null";
 		break;
 	}
-	document.getElementById(tid).value = "X coords: " + x + ", Y coords: " + y;
+	//document.getElementById(tid).value = "X coords: " + x + ", Y coords: " + y;
+	document.getElementById(tid).value =  x + "," + y;
 	count += 1;
   //alert("X coords: " + x + ", Y coords: " + y);
   }
@@ -55,7 +56,7 @@ function show_coords(event)
 		default:
 			break;
 	}
-	document.getElementById(fid).value = "lol";
+	document.getElementById(fid).value = "Cleared"; //"lol";
 	});
 }
 

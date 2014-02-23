@@ -31,8 +31,10 @@ def upload_face(request):
 	return render(request, 'mainapp/index.html')
 
 def calibrate_face(request):
-	if request.metnod == 'POST':
-		form = FaceDataForm(request.POST)
+	if request.method == 'POST':
+		form = RawFaceDataForm(request.POST)
+		if form.is_valid():
+			pass
 
 def get_face(request):
 	""" May not be useful"""
