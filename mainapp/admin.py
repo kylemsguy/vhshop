@@ -5,7 +5,7 @@ from mainapp.models import Company, DimsGlasses, Glasses
 
 class GlassesAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Company Name', {'fields': ['company', 'GlassesName']}),
+        ('Company Name', {'fields': ['company',]}),
         ('Dimensions', {'fields': ['dimensions']}),
         ('User Related', {'fields': ['numtries', 'likes', \
                                      'numtries_to_likes']}),
@@ -16,6 +16,7 @@ class CompanyAdmin(admin.ModelAdmin):
 
 class DimsGlassesAdmin(admin.ModelAdmin):
     fieldsets = [
+        ('Name', {'fields': ['GlassesName']}),
         ('Left Side', {'fields': ['left_side_x', 'left_side_y']}),
         ('Right Side', {'fields': ['right_side_x', 'right_side_y']}),
         ('Sides (General)', {'fields': ['sides', 'widthsides']}),

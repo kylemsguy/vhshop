@@ -83,4 +83,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = '/templates/images'
+MEDIA_ROOT = BASE_DIR + '/static/'
