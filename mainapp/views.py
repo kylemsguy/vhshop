@@ -52,7 +52,7 @@ def calibrate_face(request):
 		if form.is_valid():
 			form.save()
 			newform = FaceDataForm(instance=form.instance)
-			return render(request, 'mainapp/calibrate.html', {'face': form.instance, 'image': STATIC_URL + form.instance.image.url, 'image_obj': form.instance})
+			return render(request, 'mainapp/calibrate.html', {'face': form.instance, 'image': STATIC_URL + form.instance.image.url})
 		else:
                         form = FaceDataForm(request.POST, request.FILES)
                         return HttpResponse("Form is not valid")
