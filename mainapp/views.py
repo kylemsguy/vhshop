@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
 from .forms import FaceForm
-from vhshop.settings import STATIC_URL, MEDIA_ROOT
+from vhshop.settings import STATIC_URL, MEDIA_URL
 
 from mainapp.models import Company, DimsGlasses, Glasses, Face
 
@@ -18,6 +18,34 @@ urlpatterns = patterns('mysite.views',
     (r'^inp_coord/$', 'inp_coord'),
     (r'^glasses/$', 'glasses'),
 )
+
+# overlay('face.jpg', 'glasses.png', 225, [(140, 185), (188, 185)], 50, 100).save('new.jpg')
+from PIL import Image
+from math import floor
+
+def overlay(face: str, glasses: str, dim_width: int,
+        coords_eyes: list, h_offset: int, v_offset: int):
+        original_face = Image.open(face)
+        original_glasses = Image.open(glasses)
+
+        scale = dim_width / original_glasses.size[0]
+
+        new_dims = floor(original_glasses.size[0] * scale), \
+                                floor(original_glasses.size[1] * scale)
+
+        new_glasses = original_glasses.resize(new_dims,
+                Image.ANTIALIAS)
+
+        mid_coords_eyes = floor((coords_eyes[0][0] + coords_eyes[1][0]) / 2),\
+                                                floor((coords_eyes[1][0] + \
+                                                       coords_eyes[1][1]) / 2)
+
+        # implement rotation if have time
+
+        original_face.paste(new_glasses, (h_offset,
+                                          v_offset), new_glasses)
+
+        return original_face
 
 def index(request):
 	ctx = {}
@@ -55,7 +83,7 @@ def calibrate_face(request):
 		if form.is_valid():
 			form.save()
 			newform = FaceDataForm(instance=form.instance)
-			return render(request, 'mainapp/calibrate.html', {'face': form.instance, 'image': STATIC_URL + form.instance.image.url})
+			return render(request, 'mainapp/calibrate.html', {'face': form.instance, 'image': form.instance.image.url})
 		else:
                         form = FaceDataForm(request.POST, request.FILES)
                         return HttpResponse("Form is not valid")
@@ -87,7 +115,7 @@ def tryon(request):
 
 	company_list = Company.objects.all().order_by('CompName')
 	glasses_list = Glasses.objects.all().order_by('likes')
-	thedict = {'image':STATIC_URL + "temp.jpg", 'company_list': company_list, \
+	thedict = {'image':MEDIA_URL + "temp.jpg", 'company_list': company_list, \
 		'glasses_list': glasses_list}
 
 	return render_to_response("mainapp/tryon.html", thedict)

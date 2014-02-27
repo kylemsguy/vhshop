@@ -1,6 +1,7 @@
 {% extends "mainapp/base.html" %}
 {% block content %}
 Please select your file:
+<div id="stuff">
 <form action="." method="post" enctype="multipart/form-data">
 	{% csrf_token %}
     {% if form %}
@@ -16,4 +17,5 @@ Please select your file:
     <input type="submit" name="submit" />
     {% endif %}
 </form>
+</div>
 {% endblock %}

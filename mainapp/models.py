@@ -1,6 +1,6 @@
 from django.db import models
 from math import sqrt
-from vhshop.settings import MEDIA_ROOT, STATIC_URL
+from vhshop.settings import MEDIA_URL, STATIC_URL
 
 # Create your models here.
 
@@ -58,8 +58,7 @@ class Glasses(models.Model):
     picture = models.ImageField(upload_to='glasses')
 
     def admin_image(self):
-        print(MEDIA_ROOT)
-        return '<img src="%s%s"/>' % (STATIC_URL, self.picture.url)
+        return '<img src="%s%s"/>' % (MEDIA_URL, self.picture.url)
 
     admin_image.allow_tags = True
 

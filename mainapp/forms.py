@@ -19,3 +19,4 @@ class RawFaceDataForm(forms.Form):
 	right_side = forms.CharField(max_length=20)
 	left_corner = forms.CharField(max_length=20)
 	right_corner = forms.CharField(max_length=20)
+
