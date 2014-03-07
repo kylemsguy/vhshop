@@ -85,8 +85,8 @@ def calibrate_face(request):
 			newform = FaceDataForm(instance=form.instance)
 			return render(request, 'mainapp/calibrate.html', {'face': form.instance, 'image': form.instance.image.url})
 		else:
-                        form = FaceDataForm(request.POST, request.FILES)
-                        return HttpResponse("Form is not valid")
+			form = FaceDataForm(request.POST, request.FILES)
+			return HttpResponse("Form is not valid")
 def parseinttuple(instr):
 	a = instr.split(",")
 	return int(a[0]), int(a[1])
