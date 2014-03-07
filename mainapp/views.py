@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
 from .forms import FaceForm
-from vhshop.settings import STATIC_URL, MEDIA_URL
+from vhshop.settings import STATIC_URL, MEDIA_URL, MEDIA_ROOT
 
 from mainapp.models import Company, DimsGlasses, Glasses, Face
 
@@ -18,6 +18,8 @@ urlpatterns = patterns('mysite.views',
     (r'^inp_coord/$', 'inp_coord'),
     (r'^glasses/$', 'glasses'),
 )
+
+APP_ROOT = "/home/kylemsguy/vhshop-server"
 
 # overlay('face.jpg', 'glasses.png', 225, [(140, 185), (188, 185)], 50, 100).save('new.jpg')
 from PIL import Image
@@ -104,18 +106,18 @@ def tryon(request):
 		face.save()
 	glasses = Glasses.objects.all()[0]
 	print(face.image, glasses.picture)
-	facefile = MEDIA_URL + face.image.url
-	glassesfile = MEDIA_URL + glasses.picture.url
+	facefile = APP_ROOT + face.image.url
+	glassesfile = APP_ROOT + glasses.picture.url
 	print(facefile, glassesfile)
 	myoverlay = overlay(facefile, glassesfile, 225, [
 		(face.left_side_x, face.left_side_y),
 		(face.right_side_x, face.right_side_y)], 50, 100)
-	tempname = MEDIA_URL + "temp.jpg"
+	tempname = MEDIA_ROOT + "temp.jpg"
 	myoverlay.save(tempname)
 
 	company_list = Company.objects.all().order_by('CompName')
 	glasses_list = Glasses.objects.all().order_by('likes')
-	thedict = {'image':MEDIA_URL + "temp.jpg", 'company_list': company_list, \
+	thedict = {'image': MEDIA_URL + "temp.jpg", 'company_list': company_list, \
 		'glasses_list': glasses_list}
 
 	return render_to_response("mainapp/tryon.html", thedict)
