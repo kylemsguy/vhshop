@@ -104,13 +104,13 @@ def tryon(request):
 		face.save()
 	glasses = Glasses.objects.all()[0]
 	print(face.image, glasses.picture)
-	facefile = MEDIA_ROOT + face.image.url
-	glassesfile = MEDIA_ROOT + glasses.picture.url
+	facefile = MEDIA_URL + face.image.url
+	glassesfile = MEDIA_URL + glasses.picture.url
 	print(facefile, glassesfile)
 	myoverlay = overlay(facefile, glassesfile, 225, [
 		(face.left_side_x, face.left_side_y),
 		(face.right_side_x, face.right_side_y)], 50, 100)
-	tempname = MEDIA_ROOT + "temp.jpg"
+	tempname = MEDIA_URL + "temp.jpg"
 	myoverlay.save(tempname)
 
 	company_list = Company.objects.all().order_by('CompName')

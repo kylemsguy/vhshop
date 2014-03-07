@@ -17,16 +17,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = open("secret.key").read() 
+SECRET_KEY = open("vhshop/secret.key").read() 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = [
-	'.kylemsguy.com',
-	'.kylemsguy.com.',
+	'kylemsguy.kd.io',
+	'*',
 ]
 
 
@@ -87,8 +87,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = '/opt/vhshop-server/media/'
+MEDIA_ROOT = '/home/kylemsguy/vhshop-server/media/'
 
-STATIC_ROOT = '/opt/vhshop-server/static/'
+STATIC_ROOT = '/home/kylemsguy/vhshop-server/static/'
 
 MEDIA_URL = '/media/'
