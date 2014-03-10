@@ -87,9 +87,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = '/home/kylemsguy/vhshop-server/media/'
+MEDIA_ROOT = '/home/user/vhshop-server/media/'
 
-STATIC_ROOT = '/home/kylemsguy/vhshop-server/static/'
+STATIC_ROOT = '/home/user/vhshop-server/static/'
 
 MEDIA_URL = '/media/'
 
