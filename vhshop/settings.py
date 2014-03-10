@@ -25,8 +25,8 @@ DEBUG = False
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = [
-	'kylemsguy.kd.io',
-	'*',
+	'kylemsguy.com',
+	'.kylemsguy.com.',
 ]
 
 
@@ -92,3 +92,5 @@ MEDIA_ROOT = '/home/kylemsguy/vhshop-server/media/'
 STATIC_ROOT = '/home/kylemsguy/vhshop-server/static/'
 
 MEDIA_URL = '/media/'
+
+APP_ROOT = "/home/user/vhshop-server"

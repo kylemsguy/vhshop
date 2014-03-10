@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
 from .forms import FaceForm
-from vhshop.settings import STATIC_URL, MEDIA_URL, MEDIA_ROOT
+from vhshop.settings import STATIC_URL, MEDIA_URL, MEDIA_ROOT, APP_ROOT
 
 from mainapp.models import Company, DimsGlasses, Glasses, Face
 
@@ -18,8 +18,6 @@ urlpatterns = patterns('mysite.views',
     (r'^inp_coord/$', 'inp_coord'),
     (r'^glasses/$', 'glasses'),
 )
-
-APP_ROOT = "/home/kylemsguy/vhshop-server"
 
 # overlay('face.jpg', 'glasses.png', 225, [(140, 185), (188, 185)], 50, 100).save('new.jpg')
 from PIL import Image
