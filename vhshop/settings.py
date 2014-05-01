@@ -25,8 +25,9 @@ DEBUG = False
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = [
-	'kylemsguy.com',
+	'.kylemsguy.com',
 	'.kylemsguy.com.',
+	'*',
 ]
 
 
